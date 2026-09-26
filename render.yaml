@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: vera-challenge-bot
+    runtime: python
+    # Use an always-on plan: the free plan sleeps after ~15 min idle, and a restart wipes in-memory context.
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn bot:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /v1/healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: TEAM_NAME
+        value: Team Yugal
+      - key: TEAM_MEMBERS
+        value: Yugal Gahlot
+      - key: CONTACT_EMAIL
+        value: yugalgahlot05@gmail.com
