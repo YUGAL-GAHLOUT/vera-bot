@@ -2,8 +2,8 @@ services:
   - type: web
     name: vera-challenge-bot
     runtime: python
-    # Use an always-on plan: the free plan sleeps after ~15 min idle, and a restart wipes in-memory context.
-    plan: starter
+    # Free plan: sleeps after ~15 min idle and a restart wipes in-memory context.
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn bot:app --host 0.0.0.0 --port $PORT --workers 1
     healthCheckPath: /v1/healthz
